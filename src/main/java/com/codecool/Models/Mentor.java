@@ -1,4 +1,4 @@
 package com.codecool.Models;
 
-public class Mentor {
+public class Mentor extends User {
 }
