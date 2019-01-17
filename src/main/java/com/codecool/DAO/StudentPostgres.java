@@ -1,4 +1,29 @@
 package com.codecool.DAO;
 
-public class StudentPostgres {
+import com.codecool.Models.Student;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class StudentPostgres extends Postgres {
+
+    List<Student> getAllStudents() {
+        List<Student> students = new ArrayList<>();
+        Connection connection = connectionPool.getConnection();
+        String query = "SELECT * FROM students;";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet studentsResultSet = preparedStatement.executeQuery();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            connectionPool.releaseConnection(connection);
+        }
+        return students;
+    }
 }

@@ -1,4 +1,4 @@
 package com.codecool.DAO;
 
-public class QuestPostgres {
+public class QuestPostgres extends Postgres {
 }

@@ -1,4 +1,4 @@
 package com.codecool.DAO;
 
-public class MentorPostgres {
+public class MentorPostgres extends Postgres {
 }

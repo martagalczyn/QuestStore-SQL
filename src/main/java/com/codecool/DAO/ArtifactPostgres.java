@@ -1,4 +1,4 @@
 package com.codecool.DAO;
 
-public class ArtifactPostgres {
+public class ArtifactPostgres extends Postgres {
 }
