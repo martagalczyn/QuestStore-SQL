@@ -17,7 +17,6 @@ class DBconnector {
         String user = "hp";
         String password = "dupa";
         connection = DriverManager.getConnection(database, user, password);
-        connection.setAutoCommit(false);
         System.out.println("Opened database successfully");
     }
 
@@ -45,5 +44,6 @@ class DBconnector {
     public void executeStatement() throws SQLException {
         statement = connection.prepareStatement(readStatement("/home/hp/codecool/aWebModule/QuestStore-SQL/src/main/java/com/codecool/DAO/allqueries.sql"));
         statement.execute();
+        System.out.println("DB created");
     }
 }
