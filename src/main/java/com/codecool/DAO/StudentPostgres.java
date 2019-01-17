@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentPostgres extends Postgres {
+public class StudentPostgres extends Postgres implements StudentDAO {
 
     List<Student> getAllStudents() {
         List<Student> students = new ArrayList<>();
