@@ -1,4 +1,4 @@
 package com.codecool.DAO;
 
-public class AdminPostgres extends Postgres {
+public class AdminPostgres extends Postgres implements AdminDAO {
 }

@@ -1,6 +1,8 @@
 package com.codecool.DAO;
 
+
 import com.codecool.Models.Student;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,7 +10,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentPostgres extends Postgres {
+public class StudentPostgres extends Postgres implements StudentDAO {
+
+    String addNewStudentQuery = "INSERT INTO students(first_name, last_name, email, phone_number, adress, module_id) " +
+            "VALUES(" + "?" + "?" + "?" + "?" + "?" + "?" + ")";
+
+    String deleteStudentQuery = "DELETE FROM students " +
+            "WHERE last_name LIKE" + "?" + ";";
+
+    String searchSTudentQuery = "SELECT first_name, last_name, email, phone_number, adress, module_id FROM mentors " +
+            "FROM students WHERE last_name LIKE " + "?" + ";";
 
     public List<Student> getAllStudents() {
         Connection connection = connectionPool.getConnection();

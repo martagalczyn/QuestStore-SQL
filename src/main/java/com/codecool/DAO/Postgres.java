@@ -2,7 +2,7 @@ package com.codecool.DAO;
 
 import java.sql.*;
 
-public class Postgres {
+class Postgres {
 
     ConnectionPool connectionPool = createConnectionPool();
 
