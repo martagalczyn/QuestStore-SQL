@@ -1,6 +1,7 @@
 package com.codecool.DAO;
 
-public class QuestPostgres {
+
+public class QuestPostgres extends Postgres implements QuestDAO {
 
     String listOfQuestsQuery = "SELECT name, price, description, image " +
             "FROM quests;";

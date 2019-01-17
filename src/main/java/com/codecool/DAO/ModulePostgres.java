@@ -1,6 +1,6 @@
 package com.codecool.DAO;
 
-public class ModulePostgres {
+public class ModulePostgres extends Postgres implements ModuleDAO {
     String listOfModulesQuery = "SELECT name "+
             "FROM modules;";
 

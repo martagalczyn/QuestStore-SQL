@@ -1,6 +1,7 @@
 package com.codecool.DAO;
 
-public class MentorPostgres {
+
+public class MentorPostgres extends Postgres implements MentorDAO {
 
     String listOfMentorsQuery = "SELECT first_name, last_name, email, phone_number, adress, module_id "+
             "FROM mentors;";
@@ -19,5 +20,6 @@ public class MentorPostgres {
 
     String searchMentorQuery = "SELECT first_name, last_name, email, phone_number, adress, module_id FROM mentors "+
             "FROM mentors WHERE last_name LIKE " + lastName + ";";
+
 }
 

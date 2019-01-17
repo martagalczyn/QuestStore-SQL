@@ -1,8 +1,9 @@
 package com.codecool.DAO;
 
-public class ArtifactPostgres {
 
-    String listOfArtifactsQuery = "SELECT name, price, description, image "+
+public class ArtifactPostgres extends Postgres implements ArtifactDAO {
+
+    String listOfArtifactsQuery = "SELECT name, price, description, image " +
             "FROM artifacts;";
 
     String name;
@@ -10,7 +11,7 @@ public class ArtifactPostgres {
     String description;
     String image;
 
-    String addNewArtifactQuery = "INSERT INTO artifacts(name, price, description, image) "+
+    String addNewArtifactQuery = "INSERT INTO artifacts(name, price, description, image) " +
             "VALUES(" + name + price + description + image + ")";
 
     String deleteArtifactQuery = "DELETE FROM artifacts " +
