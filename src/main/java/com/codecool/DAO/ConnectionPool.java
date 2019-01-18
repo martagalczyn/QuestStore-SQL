@@ -13,5 +13,4 @@ public interface ConnectionPool {
     String getUser();
 
     String getPassword();
-
 }

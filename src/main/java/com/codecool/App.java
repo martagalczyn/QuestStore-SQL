@@ -2,6 +2,7 @@ package com.codecool;
 
 import com.codecool.Controllers.*;
 import com.codecool.DAO.*;
+import com.codecool.Models.Student;
 
 public class App {
 
@@ -19,9 +20,18 @@ public class App {
         QuestController questController = new QuestController(questDAO);
         StudentController studentController = new StudentController(studentDAO);
 
-        MainController mainController = new MainController(adminController, artifactController, mentorController,
-                questController,studentController);
+        ControllerRouter mainController = new ControllerRouter(
+                adminController,
+                artifactController,
+                mentorController,
+                questController,
+                studentController
+        );
+
+        Student testStudent = new Student(1, "Stanislaw", "Wyrobek", "st.wyrobek@gmail.com", "600252436", "Kraków", 10);
 
         mainController.sayHello();
+//        mainController.insertStudent(testStudent);
+        mainController.removeStudent(5);
     }
 }

@@ -1,8 +1,6 @@
 package com.codecool.DAO;
 
-
 import com.codecool.Models.Student;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,15 +10,7 @@ import java.util.List;
 
 public class StudentPostgres extends Postgres implements StudentDAO {
 
-    String addNewStudentQuery = "INSERT INTO students(first_name, last_name, email, phone_number, adress, module_id) " +
-            "VALUES(" + "?" + "?" + "?" + "?" + "?" + "?" + ")";
-
-    String deleteStudentQuery = "DELETE FROM students " +
-            "WHERE last_name LIKE" + "?" + ";";
-
-    String searchSTudentQuery = "SELECT first_name, last_name, email, phone_number, adress, module_id FROM mentors " +
-            "FROM students WHERE last_name LIKE " + "?" + ";";
-
+    @Override
     public List<Student> getAllStudents() {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM students;";
@@ -28,7 +18,6 @@ public class StudentPostgres extends Postgres implements StudentDAO {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             studentResultSet = preparedStatement.executeQuery();
-            
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -37,6 +26,42 @@ public class StudentPostgres extends Postgres implements StudentDAO {
         return getStudentsFromResultSet(studentResultSet);
     }
 
+    @Override
+    public void insertStudent(Student student) {
+
+        Connection connection = connectionPool.getConnection();
+        String query = "INSERT INTO students (first_name, last_name, email, phone_number, adress, module_id)" +
+                       "VALUES(?, ?, ?, ?, ?, ?);";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, student.getFirstName());
+            preparedStatement.setString(2, student.getLastName());
+            preparedStatement.setString(3, student.getEmail());
+            preparedStatement.setString(4, student.getPhoneNumber());
+            preparedStatement.setString(5, student.getAdress());
+            preparedStatement.setInt(6, student.getModuleId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            connectionPool.releaseConnection(connection);
+        }
+    }
+
+    public void removeStudent(int id) {
+        Connection connection = connectionPool.getConnection();
+        String query = "DELETE FROM students " +
+                       "WHERE id = ?;";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            connectionPool.releaseConnection(connection);
+        }
+    }
 
     private List<Student> getStudentsFromResultSet(ResultSet resultSet) {
         List<Student> students = new ArrayList<>();
@@ -53,7 +78,7 @@ public class StudentPostgres extends Postgres implements StudentDAO {
                     students.add(new Student(id, firstName, lastName, email, phoneNumber, adress, moduleId));
                 }
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return students;

@@ -9,4 +9,8 @@ public class StudentController {
     public StudentController(StudentDAO dao) {
         this.studentDAO = dao;
     }
+
+    public StudentDAO getStudentDAO() {
+        return studentDAO;
+    }
 }
